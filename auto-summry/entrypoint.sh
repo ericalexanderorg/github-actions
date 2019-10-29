@@ -2,7 +2,9 @@
 
 # Grab the issue body and extract the first URL
 GITHUB_ISSUE_BODY=$(jq --raw-output .issue.body "$GITHUB_EVENT_PATH")
-URL=$(echo "$GITHUB_ISSUE_BODY" | grep -o '(http|https)://[^/"]+')
+echo "$GITHUB_ISSUE_BODY"
+URL=$(echo "$GITHUB_ISSUE_BODY" | "https\?://[a-zA-Z0-9./?=_-]*")
+echo "$URL"
 
 # Get the summary
 SUMMRY=$(curl -s "http://api.smmry.com/&SM_API_KEY=${SUMMRY_API_KEY}&SM_URL=${URL}" | jq .sm_api_content)
