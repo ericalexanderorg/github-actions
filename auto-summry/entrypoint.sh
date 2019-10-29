@@ -9,7 +9,7 @@ echo "$URL"
 # Get the summary
 SUMMRY_RESPONSE=$(curl -s "http://api.smmry.com/&SM_API_KEY=$SUMMRY_API_KEY&SM_URL=$URL")
 echo "$SUMMRY_RESPONSE"
-SUMMRY=$(jq --raw-output .sm_api_content "$SUMMRY_RESPONSE")
+SUMMRY=$(echo "$SUMMRY_RESPONSE" | jq .sm_api_content )
 echo $SUMMRY
 
 # Add a comment to the issue with the Summry
