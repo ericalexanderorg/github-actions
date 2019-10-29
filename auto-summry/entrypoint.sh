@@ -16,7 +16,7 @@ echo $SUMMRY
 COMMENTS_URL=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
-RESPONSE=$(curl --data "{\"body\": \"${SUMMRY}\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "${COMMENTS_URL}")
+RESPONSE=$(curl --data "{\"body\": ${SUMMRY}}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "${COMMENTS_URL}")
 
 # Following added to actions output for troubleshooting
 echo "$RESPONSE"
