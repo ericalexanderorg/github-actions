@@ -9,10 +9,10 @@ SUMMRY=$(curl -s "http://api.smmry.com/&SM_API_KEY=${SUMMRY_API_KEY}&SM_URL=${UR
 echo "$SUMMRY"
 
 # Add a comment to the issue with the Summry
-COMMENTS_URI=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
+COMMENTS_URL=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
-RESPONSE=$(curl --data "{\"body\": $SUMMRY}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "${COMMENTS_URI}")
+RESPONSE=$(curl --data "{\"body\": \"${SUMMRY}\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "${COMMENTS_URL}")
 
 # Following added to actions output for troubleshooting
 echo "$RESPONSE"
