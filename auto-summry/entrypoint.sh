@@ -7,7 +7,7 @@ URL=$(echo "$GITHUB_ISSUE_BODY" | grep -o "https\?://[a-zA-Z0-9./?=_-]*")
 echo "$URL"
 
 # Get the summary
-SUMMRY=$(curl -s "http://api.smmry.com/&SM_API_KEY=${SUMMRY_API_KEY}&SM_URL=${URL}" | jq .sm_api_content)
+SUMMRY=$(curl -s "http://api.smmry.com/&SM_API_KEY=$SUMMRY_API_KEY&SM_URL=$URL" | jq .sm_api_content)
 echo "$SUMMRY"
 
 # Add a comment to the issue with the Summry
