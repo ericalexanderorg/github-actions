@@ -3,7 +3,7 @@
 # Grab the issue body and extract the first URL
 GITHUB_ISSUE_BODY=$(jq --raw-output .issue.body "$GITHUB_EVENT_PATH")
 echo "$GITHUB_ISSUE_BODY"
-URL=$(echo "$GITHUB_ISSUE_BODY" | "https\?://[a-zA-Z0-9./?=_-]*")
+URL=$(echo "$GITHUB_ISSUE_BODY" | grep -o "https\?://[a-zA-Z0-9./?=_-]*")
 echo "$URL"
 
 # Get the summary
